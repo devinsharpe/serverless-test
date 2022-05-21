@@ -1,9 +1,9 @@
 import fastify from "fastify";
 import { v4 } from "uuid";
 
-const server = fastify({ logger: true });
+const app = fastify({ logger: true });
 
-server.get("/", function (req, reply) {
+app.get("/", function (req, reply) {
   const path = `/api/item/${v4()}`;
   reply
     .code(200)
@@ -12,7 +12,7 @@ server.get("/", function (req, reply) {
     .send(`Hello! Go to item: <a href="${path}">${path}</a>`);
 });
 
-server.get("/api/item/:slug", function (req, reply) {
+app.get("/api/item/:slug", function (req, reply) {
   const { slug } = req.params;
   reply.code(200).send(`Item ${slug}`);
 });
