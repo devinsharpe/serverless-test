@@ -1,5 +1,5 @@
-const fastify = require("fastify");
-const { v4 } = require("uuid");
+import fastify from "fastify";
+import { v4 } from "uuid";
 
 const server = fastify({ logger: true });
 
@@ -17,4 +17,7 @@ server.get("/api/item/:slug", function (req, reply) {
   reply.code(200).send(`Item ${slug}`);
 });
 
-module.exports = server;
+export default async (req, res) => {
+  await app.ready();
+  app.server.emit("request", req, res);
+};
