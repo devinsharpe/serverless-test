@@ -12,6 +12,10 @@ app.get("/", function (req, reply) {
     .send(`Hello! Go to item: <a href="${path}">${path}</a>`);
 });
 
+app.get("/hello", function (req, reply) {
+  reply.code(200).send("Woohoo! Hello world!");
+});
+
 app.get("/api/item/:slug", function (req, reply) {
   const { slug } = req.params;
   reply.code(200).send(`Item ${slug}`);
